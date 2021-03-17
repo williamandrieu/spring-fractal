@@ -1,0 +1,25 @@
+fr/spring/fractal/fractal/project/thread/ThreadPool.java
+ org.project.thread.ThreadPool
+ org.project.thread.ThreadPool$WorkerThread
+fr/spring/fractal/fractal/project/fractal/MandelTask.java
+ org.project.fractal.MandelTask
+fr/spring/fractal/fractal/project/fractal/JuliaTask.java
+ org.project.fractal.JuliaTask
+fr/spring/fractal/fractal/project/fractal/Mandelbrot.java
+ org.project.fractal.Mandelbrot
+fr/spring/fractal/fractal/project/core/Conf.java
+ org.project.core.Conf
+fr/spring/fractal/fractal/project/fractal/Julia.java
+ org.project.fractal.Julia
+fr/spring/fractal/fractal/project/utils/URLUtils.java
+ org.project.utils.URLUtils
+fr/spring/fractal/fractal/project/CacheLRU.java
+ org.project.CacheLRU
+fr/spring/fractal/fractal/project/fractal/MandelTaskCollable.java
+ org.project.fractal.MandelTaskCollable
+org/project/App.java
+ org.project.App
+fr/spring/fractal/fractal/project/controllers/HelloController.java
+ fr.spring.fractal.fractal.project.controllers.HelloController
+fr/spring/fractal/fractal/FractalApplication.java
+ fr.spring.fractal.fractal.FractalApplication

@@ -1,11 +1,8 @@
 package org.project;
 
 import org.project.core.Conf;
-import org.project.core.Template;
 import org.project.fractal.Julia;
 import org.project.fractal.Mandelbrot;
-import org.project.middlewares.LoggerMiddleware;
-import spark.Spark;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
@@ -15,11 +12,10 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.concurrent.Executors;
 
-import static spark.Spark.halt;
 
 public class App {
 
-    private static final boolean DEBUG = true;
+/*    private static final boolean DEBUG = true;
 
     public static void main(String[] args) throws IOException {
         initialize();
@@ -28,7 +24,7 @@ public class App {
         Mandelbrot mandelbrot = new Mandelbrot(5000);
         Julia julia = new Julia();
 
-        CacheLRU cacheLRU = new CacheLRU(50);
+        org.project.CacheLRU cacheLRU = new org.project.CacheLRU(50);
 
         Spark.get("/", (req, res) -> {
             return Template.render("home.html", new HashMap<>());
@@ -49,13 +45,13 @@ public class App {
             if (!cacheLRU.contains(key)) {
                 switch (type) {
                     case "mandelbrot":
-                        bufferedImage = mandelbrot.generateFractal(height, width, x, y, zoom, Executors.newFixedThreadPool(cores)/*new ThreadPool(cores)*/, true);
+                        bufferedImage = mandelbrot.generateFractal(height, width, x, y, zoom, Executors.newFixedThreadPool(cores)*//*new ThreadPool(cores)*//*, true);
                         break;
                     case "julia":
-                        bufferedImage = julia.generateFractal(height, width, x, y, zoom, Executors.newFixedThreadPool(cores)/*new ThreadPool(cores)*/, true);
+                        bufferedImage = julia.generateFractal(height, width, x, y, zoom, Executors.newFixedThreadPool(cores)*//*new ThreadPool(cores)*//*, true);
                         break;
                     default:
-                        bufferedImage = mandelbrot.generateFractal(height, width, x, y, zoom, Executors.newFixedThreadPool(cores)/*new ThreadPool(cores)*/, false);
+                        bufferedImage = mandelbrot.generateFractal(height, width, x, y, zoom, Executors.newFixedThreadPool(cores)*//*new ThreadPool(cores)*//*, false);
                         break;
                 }
                 cacheLRU.addNewImages(key, bufferedImage);
@@ -76,10 +72,10 @@ public class App {
 
             //return Template.render("image.html", new HashMap<>());
         });
-    }
+    }*/
 
     static void initialize() {
-        Template.initialize();
+       /* Template.initialize();
 
         // Display exceptions in logs
         Spark.exception(Exception.class, (e, req, res) -> e.printStackTrace());
@@ -90,6 +86,6 @@ public class App {
         // Configure server port
         Spark.port(Conf.HTTP_PORT);
         final LoggerMiddleware log = new LoggerMiddleware();
-        Spark.before(log::process);
+        Spark.before(log::process);*/
     }
 }
