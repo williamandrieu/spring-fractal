@@ -1,4 +1,4 @@
-package org.project.fractal;
+package fr.spring.fractal.fractal.project.fractal;
 
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package org.project.fractal;
+package fr.spring.fractal.fractal.project.fractal;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

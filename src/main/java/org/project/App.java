@@ -1,8 +1,6 @@
 package org.project;
 
 import org.project.core.Conf;
-import org.project.fractal.Julia;
-import org.project.fractal.Mandelbrot;
 
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
