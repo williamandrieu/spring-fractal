@@ -18,11 +18,10 @@ public class HelloController {
     Mandelbrot mandelbrot = new Mandelbrot(1000);
     Julia julia = new Julia();
 
-    @RequestMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
-    }
-    @RequestMapping(value = "/images/{type}/{height}/{width}/{x}/{y}/{zoom}", headers = "Accept=image/jpeg, image/jpg, image/png, image/gif", method = RequestMethod.GET)
+
+
+
+    @RequestMapping(value = "/images/{type}/{height}/{width}/{x}/{y}/{zoom}", headers = "Accept=image/jpeg, image/jpg, image/png, image/gif, image/webm", method = RequestMethod.GET)
     public @ResponseBody
     byte[] image(@PathVariable("type") String type,
                  @PathVariable("height") Integer height,
@@ -37,7 +36,7 @@ public class HelloController {
         };
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ImageIO.write( bufferedImage  , "jpg", byteArrayOutputStream);
+            ImageIO.write( bufferedImage  , "png", byteArrayOutputStream);
             return byteArrayOutputStream.toByteArray();
 
         } catch (IOException e) {

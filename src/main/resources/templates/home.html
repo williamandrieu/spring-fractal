@@ -1,8 +1,28 @@
-#parse("base.html")
-#@mainLayout()
-<h1>Home Template</h1>
-<div>
-    BipBop
-    <img src="img/java.jpg" />
-</div>
-#end
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Mandelbrot</title>
+    <link href="/css/imageControl.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA==" crossorigin="anonymous" />
+</head>
+    <body class="bg-dark text-white h-100">
+        <div class="row h-100">
+            <div class="col-md-3">
+                <a href="/home" class="btn btn-secondary mt-2 ml-3 d-inline-block"><i class="fas fa-cog mr-2"></i>Paramètres</a>
+
+            </div>
+            <div class="col-md-6 d-flex flex-column align-items-center justify-content-center text-center">
+            <h1 class="mb-3">Faractal Generator V1.1</h1>
+
+            <a href="/home" class="btn btn-outline-light">Accéder au générateur</a>
+            </div>
+            <div class="col-md-3 d-flex justify-content-end">o</div>
+        </div>
+
+    </body>
+</html>

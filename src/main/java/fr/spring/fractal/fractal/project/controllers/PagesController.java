@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PagesController {
 
     @RequestMapping("/home")
-    public String home() {
+    public String imagePage() {
         return "image";
+    }
+
+    @RequestMapping("/")
+    public String homePage() {
+        return "home";
     }
 }

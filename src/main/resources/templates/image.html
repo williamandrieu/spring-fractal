@@ -10,33 +10,53 @@
 
 </head>
 <body>
-<div id="container">
+<div id="content">
+    <div class="control-header">
+        <div class="zoom-control">
+            <a onclick="move('zoom', -1)" id="zoom-plus" class="zoom-btn">
+                <i class="fas fa-plus"></i>
+            </a>
+            <a onclick="move('zoom', 1)" id="zoom-minus" class="zoom-btn">
+                <i class="fas fa-minus"></i>
+            </a>
+        </div>
 
-    <div class="type-selectors">
-        <div class="selector" onclick="changeImage('mandelbrot')">Mandelbrot</div>
-        <div class="selector" onclick="changeImage('julia')">Julia</div>
+        <div class="select">
+            <select name="slct" id="slct" onchange="changeImage()">
+                <option value="mandelbrot">Mandelbrot</option>
+                <option value="julia">Julia</option>
+            </select>
+        </div>
+
+        <div class="move-control">
+            <a onclick="move('y', -1)" id="move-up" class="move-btn-y">
+                <i class="fas fa-caret-up"></i>
+            </a>
+            <div class="move-side">
+                <a onclick="move('x', -1)" id="move-left" class="move-btn-x">
+                    <i class="fas fa-caret-left"></i>
+                </a>
+                <div class="move-spacing"></div>
+                <a onclick="move('x', 1)" id="move-right" class="move-btn-x">
+                    <i class="fas fa-caret-right"></i>
+                </a>
+            </div>
+            <a onclick="move('y', 1)" id="move-down" class="move-btn-y">
+                <i class="fas fa-caret-down"></i>
+            </a>
+        </div>
     </div>
-    <div class="zoom-controller">
-            <i id="zoomup"  onclick="move('zoom', -1)" class="fas fa-search-plus"></i>
-            <i id="zoomdown" onclick="move('zoom', 1)" class="fas fa-search-minus"></i>
-    </div>
-    <div id="direction-controller">
 
-            <i id="up" onclick="move('y', -1)" class="fas fa-arrow-up"></i>
+    <div id="fractal-img" class="img-main" style="background-image: url('')"></div>
 
-        <div class="arrow-container">
-            <i id="left" onclick="move('x', -1)" class="fas fa-arrow-left"></i>
-            <i id="right" onclick="move('x', 1)" class="fas fa-arrow-right"></i></div>
-
-            <i id="down" onclick="move('y', 1)" class="fas fa-arrow-down"></i>
-
-    </div>
-    <img id="image" src="/images/mandelbrot/1080/1920/0.0/0.0/4.0">
+    <div class="loading">Chargement...</div>
 </div>
 
 <script>
+    let isEasterOn = false
+    let audio = new Audio('https://timotei.co/music/circus.mp3');
+    const fractalDiv = document.getElementById("fractal-img");
     const image = document.getElementById("image");
-    let typeBase = "mandelbrot";
 
     const position = {
         x: 0.0,
@@ -44,16 +64,27 @@
         zoom: 4.0
     }
 
-    function changeImage(type) {
-        let height = image.offsetHeight;
-        let width = image.offsetWidth;
-        typeBase = type ?? typeBase;
-
-        image.src = `/images/${typeBase}/${height}/${width}/${position.x}/${position.y}/${position.zoom}`
+    function changeImage() {
+        let width = window.innerWidth, height = window.innerHeight;
+        let type = document.getElementById("slct").value;
+        let imageSrc = `/images/${type}/${height}/${width}/${position.x}/${position.y}/${position.zoom}`
+        fractalDiv.style["background-image"] =`url("${imageSrc}")`;
     }
 
 
     function move(pos, value) {
+        if(isEasterOn){
+            audio.pause();
+            audio.currentTime = 0;
+            changeImage();
+        }
+        if(position.x >= 1 && position.x < 2){
+            fractalDiv.style["background-image"] = "url('https://www.zupimages.net/up/21/02/6w8o.jpg')";
+            audio.play();
+            isEasterOn = true;
+        }else{
+            changeImage();
+        }
         if(pos === "z"){
             if(value < 0){
                 position[pos] *= 0.8;
@@ -76,32 +107,38 @@
             case 37:        // PERMET DE SE DEPLACER VERS LA GAUCHE AVEC LA FLECHE DE GAUCHE
                 move('x', -1);
                 break;
-
             case 38:        // PERMET DE SE DEPLACER VERS LE HAUT AVEC LA FLECHE DU HAUT
                 move('y', -1);
                 break;
-
             case 39:        // PERMET DE SE DEPLACER VERS LA DROITE AVEC LA FLECHE DE DROITE
                 move('x', 1);
                 break;
-
             case 40:        // PERMET DE SE DEPLACER VERS LE BAS AVEC LA FLECHE DU BAS
                 move('y', 1);
                 break;
-
             case 65:        // PERMET DE ZOOMER EN ARRIERE AVEC LA TOUCHE A
                 move('zoom', -1);
                 break;
-
             case 90:        // PERMET DE ZOOMER EN AVANT AVEC LA TOUCHE Z
                 move('zoom', 1);
                 break;
-
             default:
                 return;
         }
         e.preventDefault();
     };
+
+    window.addEventListener("wheel", event => zoomScroll(event.deltaY));
+    function zoomScroll(z) {
+        if(z > 0){
+            move('z', 1);
+        }else{
+            move('z', -1);
+        }
+    }
+
+    changeImage();
+
 </script>
 </body>
 </html>
